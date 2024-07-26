@@ -2,8 +2,10 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'JMeterFile', defaultValue: 'Products.jmx', description: 'JMeter test plan file')
         string(name: 'JMeterPath', defaultValue: 'C:\\apache-jmeter-5.6.3\\bin', description: 'JMeter path')
+        string(name: 'JMeterFile', defaultValue: 'Products.jmx', description: 'JMeter test plan file')
+        string(name: 'THREADS', defaultValue: '5', description: 'Number of threads')
+        string(name: 'RAMP_UP', defaultValue: '10', description: 'Ramp-up period')
     }
 
     stages {
@@ -15,13 +17,13 @@ pipeline {
         }
         stage('Run test') {
             steps {
-                bat 'cd %JMeterPath% && jmeter -n -t %JMeterFile% -l results.csv'
+                bat 'cd ${params.JMeterPath} && jmeter -n -t ${params.JMeterFile} -l results.jtl -Jthreads=${params.THREADS} -Jramp_up=${params.RAMP_UP}'
             }
         }
         stage('Publish Report') {
             steps {
                 publishPerformanceTestReport(target: [
-                    reportFile: 'results.csv',
+                    reportFile: 'results.jtl',
                     format: 'JMeter'
                 ])
             }
