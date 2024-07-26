@@ -12,9 +12,14 @@ pipeline {
                 url: 'https://github.com/hersannfonseca/qa-performance-testing.git'
             }
         }
+        stage('cd') {
+            steps {
+                bat 'cd scripts'
+            }
+        }
         stage('Build') {
             steps {
-                bat 'cd scripts && jmeter -n -t %JMeterFile% -l results.csv'
+                bat 'jmeter -n -t %JMeterFile% -l results.csv'
             }
         }
         stage('Publish Report') {
