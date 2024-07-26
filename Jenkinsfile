@@ -8,7 +8,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/hersannfonseca/qa-performance-testing.git'
+                git branch: 'main', 
+                url: 'https://github.com/hersannfonseca/qa-performance-testing.git'
             }
         }
         stage('Build') {
