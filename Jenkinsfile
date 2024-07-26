@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'SCRIPT_NAME', defaultValue: 'Products.JMX', description: 'Number of threads')
+        string(name: 'SCRIPT_NAME', defaultValue: 'Products.jmx', description: 'Number of threads')
         string(name: 'THREADS', defaultValue: '5', description: 'Number of threads')
         string(name: 'RAMP_UP', defaultValue: '10', description: 'Ramp-up period')
     }
