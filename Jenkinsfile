@@ -3,9 +3,9 @@ pipeline {
 
     parameters {
         string(name: 'JMeterPath', defaultValue: 'C:\\apache-jmeter-5.6.3\\bin', description: 'JMeter path')
-        string(name: 'JMeterFile', defaultValue: 'Products.jmx', description: 'JMeter test plan file')
-        string(name: 'THREADS', defaultValue: '5', description: 'Number of threads')
-        string(name: 'RAMP_UP', defaultValue: '10', description: 'Ramp-up period')
+        string(name: 'JMeterFile', defaultValue: 'D:\\Hersann\\GitHub\\qa-performance-testing\\scripts\\Products.jmx', description: 'JMeter test plan file')
+        string(name: 'THREADS', defaultValue: '1', description: 'Number of threads')
+        string(name: 'RAMP_UP', defaultValue: '1', description: 'Ramp-up period')
     }
 
     stages {
