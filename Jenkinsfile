@@ -3,6 +3,7 @@ pipeline {
 
     parameters {
         string(name: 'JMeterFile', defaultValue: 'Products.jmx', description: 'JMeter test plan file')
+        string(name: 'JMeterPath', defaultValue: 'C:\\apache-jmeter-5.6.3\\bin', description: 'JMeter path')
     }
 
     stages {
@@ -12,14 +13,9 @@ pipeline {
                 url: 'https://github.com/hersannfonseca/qa-performance-testing.git'
             }
         }
-        stage('cd') {
+        stage('Run test') {
             steps {
-                bat 'cd scripts'
-            }
-        }
-        stage('Build') {
-            steps {
-                bat 'jmeter -n -t %JMeterFile% -l results.csv'
+                bat 'cd %JMeterPath% && jmeter -n -t %JMeterFile% -l results.csv'
             }
         }
         stage('Publish Report') {
